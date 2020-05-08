@@ -1,0 +1,59 @@
+﻿@model List<DomainProduct.Entities.ProductsKit>
+
+<!--COMEÇO KIT DE PRODUTO-->
+<div class="row product-grid kit-product">
+    <div class="column blocoInfo" style="padding-right: 0;">
+        <div class="ui middle aligned margin bottom medium blocoValores blocoKit">
+
+            <div class="one column ui attached segment">
+                <div class="column">
+                    <h5>Acessórios Incluidos</h5>
+                </div>
+                
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var product in Model)
+                    {
+                    <div class="ui stackable two column grid margin top medium">
+                        <div class="column" style="width: 60%;">
+                            <div class="ui stackable two column grid" style="padding: 0;">
+                                <div class="column" style="padding: 0; width: 30%;">
+                                    <img src="/assets/image/check-box-select.jpg" style="display: inline-block;opacity: 0.7;width: 35px;margin-left: 25%;" class="ui image tiny">
+                                </div>
+                                <div class="column" style="padding: 0;width: 70%;">
+                                    <div class="infoKit">
+                                        <span class="nameProduct">@product.Name</span>
+                                        <div class="valores">
+                                            @if (product.Discount > 0)
+                                            {
+                                                <span class="valorDe">de @(string.Format("{0:c}", product.Price)) por</span>
+                                                <span class="valorPor">@(string.Format("{0:c}", product.PricePromotion))</span>
+                                                <span class="kit">no kit</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="valorPor">@(string.Format("{0:c}", product.Price))</span>
+                                                <span class="kit">no kit</span>
+                                            }
+                                        </div>
+                                        @if (product.AvailableReferences != null && product.AvailableReferences.Any())
+                                        {
+                                            string references = string.Empty;
+                                            string variations = string.Empty;
+                                        }
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column" style="width: 40%; padding-top: 0;">
+                            <img src="@product.ImageHome" onerror="imgError(this)" style="display: inline-block;" class="ui image tiny">
+                        </div>
+                    </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<!--FIM KIT DE PRODUTO-->

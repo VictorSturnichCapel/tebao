@@ -1,0 +1,66 @@
+﻿@model IList<DomainCompany.Entities.Banner>
+@if (Model != null && Model.Count() > 0)
+{
+
+
+<style>
+.slideshow-responsive{
+    display:none!important;
+}
+@@media screen and (max-width:600px){
+    .slideshow-responsive{
+        display: block !important;
+    }
+    .slideshow-desktop{
+        display: none !important;
+    }
+}
+</style>
+  List<DomainCompany.Entities.Banner> bannerRandom = Model.Where(b => b.Random == true).ToList();
+  List<DomainCompany.Entities.Banner> bannerNoRandom = Model.Where(b => b.Random == false).ToList();
+
+  if (bannerRandom.Any())
+  {
+
+    <div id="banner" class="ui fluid container car-banners slick-dotted slideshow slideshow-desktop" data-qtd="1" data-auto="true" data-arrow="true" data-dots="true">
+      @foreach (var randombanner in bannerRandom)
+      {
+        if(!@randombanner.Name.Contains("Responsive")){
+        <div class="container slideshow-item">
+          <div class="image" style="clip-path: polygon(0% 0%, 0% 0%, 100% 0%, 100% 85%, 50% 100%, 0% 85%, 0% 90%);">
+            <a href="@randombanner.Link" title="@randombanner.Name">
+              <img src="/assets/image/img_default.png" data-src="@randombanner.NameFileImage" class="ui image centered" alt="@randombanner.Name" title="@randombanner.Name" onerror="imgError(this)" />
+            </a>
+          </div>
+        </div>
+      }
+      }
+    </div>
+
+    <div class="ui fluid container car-banners slick-dotted slideshow slideshow-responsive" data-qtd="1" data-auto="true" data-arrow="true" data-dots="true">
+      @foreach (var randombanner in bannerRandom)
+      {
+        if(@randombanner.Name.Contains("Responsive")){
+        <div class="container slideshow-item">
+          <div class="image" style="clip-path: polygon(0% 0%, 0% 0%, 100% 0%, 100% 85%, 50% 100%, 0% 85%, 0% 90%);">
+            <a href="@randombanner.Link" title="@randombanner.Name">
+              <img src="/assets/image/img_default.png" data-src="@randombanner.NameFileImage" class="ui image centered" alt="@randombanner.Name" title="@randombanner.Name" onerror="imgError(this)" />
+            </a>
+          </div>
+        </div>
+      }
+      }
+    </div>
+  }
+  if (bannerNoRandom.Any())
+  {
+    <div class="ui images middle aligned center aligned essajoca">
+      @foreach (var banner in bannerNoRandom)
+      {
+        <a href="@banner.Link" title="@banner.Name">
+          <img src="/assets/image/img_default.png" data-src="@banner.NameFileImage" class="ui image" alt="@banner.Name" title="@banner.Name" onerror="imgError(this)" />
+        </a>
+      }
+    </div>
+  }
+}

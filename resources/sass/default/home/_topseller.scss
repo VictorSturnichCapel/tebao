@@ -1,0 +1,133 @@
+.topsellers {
+  margin-top: 30px;
+  
+  .ui.container.topsellers{
+    @media only screen and (min-width: 1320px){
+      width: 975px;
+    }
+    
+
+  }
+
+  .titulo_group{
+    color: black;
+    font-size: xx-large;
+    padding-top: 5px;
+    font-family: 'Euroestile', square;
+  }
+
+  .titulo_group::before{
+    content: url(/assets/image/logo/header-stripes.png);
+    padding-right: 5px;
+}
+
+.ui.basic.button {
+  color: rgba(0, 0, 0, 0.6) !important;
+  font-weight: normal;
+  border-radius: 5%;
+  text-transform: none;
+  text-shadow: none !important;
+  width: 40px;
+  height: 40px;
+}
+
+.ui.labeled.icon.buttons > .button > .icon, .ui.labeled.icon.button > .icon {
+position: absolute;
+height: 100%;
+line-height: 1;
+border-radius: 0px;
+border-top-left-radius: inherit;
+border-bottom-left-radius: inherit;
+text-align: center;
+margin: 0em;
+width: 2.57142857em;
+background-color: rgba(0, 0, 0, 0.05);
+color: '';
+}
+.slick-slider .slick-prev {
+left: calc(100% - 99%);
+top: 40%;
+right: 98%; 
+opacity:1;
+position: absolute;
+border-radius: 0px; 
+font-size: 1.3rem;
+top: 40%;
+left: -3.5%;
+opacity: 1;
+padding: 8px 10px 0px 8px; 
+background: #111111 !important;
+line-height: 2.5em;
+.icon{
+  color: white !important;
+}
+}
+.slick-slider .slick-prev:hover{
+background: #fac600!important;
+}
+.ui.mini.button {
+font-size: 0.78571429rem;
+}
+.slick-slider .slick-next {
+right:calc(100% - 99%);
+position: absolute;
+border-radius: 0px;
+font-size: 1.3rem;
+top: 40%;
+left: 99.5%;
+@media screen and (max-width: $mobile-bp) {
+  left:93.2%;
+}
+opacity: 1;
+padding: 8px 10px 0px 8px;
+background: #111111 !important;
+line-height: 2.5em;
+
+.icon{
+  color: white !important;
+}
+}
+.slick-slider .slick-next:hover{
+background: #fac600!important;
+}
+
+.slick-slider .slick-prev, .slick-slider .slick-next {
+position: absolute;
+z-index: 9;
+bottom: -30px;
+}
+
+.slick-slider .slick-prev, .slick-slider .slick-next {
+-webkit-transition: 0.3s;
+transition: 0.3s;
+z-index: 9;
+}
+
+.ui.icon.buttons .button > .icon, .ui.icon.button > .icon {
+margin: 0em !important;
+vertical-align: top;
+}
+
+i.large.icon, i.large.icons {
+line-height: 1;
+vertical-align: middle;
+font-size: 1.5em;
+}
+
+.ui.button > .icon:not(.button) {
+font-size: 2em;
+}
+
+}
+
+.ui.container.topsellers{
+  @media only screen and (min-width: 1320px){
+    width: 975px;
+  }
+}
+
+#principal{
+  clip-path: polygon(0% 0%, 0% 0%, 100% 0%, 100% 85%, 50% 100%, 0% 85%, 0% 90%);
+  background-image: url("/assets/image/banners/bg-carro.png")!important;
+  padding-bottom: 50px;
+}

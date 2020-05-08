@@ -1,0 +1,44 @@
+﻿@model IList<DomainProduct.Entities.Group>
+
+@if (Model != null && Model.Count() > 0)
+{
+
+        foreach (var group in Model)
+        {
+            if(@group.Name == "Itens para Upgrade"){
+            <div id="principal">
+                <div class="ui container topsellers">
+                    <div id="Itens para Upgrade" >
+                        <a href="@group.UrlFriendly" title="@group.Name"><h3 class="titulo_group" style="color:white; padding-top: 50px;">@group.Name</h3></a>
+                    </div>
+                    @Html.Action("ProductsByGroup", "Product", new { id = group.IdGroup })
+                </div>
+            </div>
+             }
+
+             if(@group.Name == "Kits"){
+            <div>
+                <div class="ui container topsellers">
+                    <div id="kit" >
+                        <a href="@group.UrlFriendly" title="@group.Name"><h3 class="titulo_group">@group.Name</h3></a>
+                    </div>
+                    @Html.Action("ProductsByGroup", "Product", new { id = group.IdGroup })
+                </div>
+            </div>
+             }
+
+             if(@group.Name == "Suspensões"){
+            <div>
+                <div class="ui container topsellers">
+                    <div id="Suspensões" >
+                        <a href="@group.UrlFriendly" title="@group.Name"><h3 class="titulo_group">@group.Name</h3></a>
+                    </div>
+                    @Html.Action("ProductsByGroup", "Product", new { id = group.IdGroup })
+                </div>
+            </div>
+            <!-- ~/Views/Shared/Blocks/Banner/_FooterHalfBanner.cshtml -->
+               @Html.Action("FooterHalfBanner", "Banner")
+             }
+
+        }
+}

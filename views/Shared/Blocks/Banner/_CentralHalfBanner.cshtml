@@ -1,0 +1,19 @@
+﻿@model IList<DomainCompany.Entities.Banner>
+@if (Model != null && Model.Any())
+{
+    <div class="ui container centralHalf">
+        <div class="ui equal width grid images middle aligned center aligned stackable">
+        
+            @foreach (var banner in Model)
+            {
+                <div class="column" style="max-width:350px">
+                    <a href="@banner.Link" class="ui image" title="@banner.Name">
+                        <img src="/assets/image/loading.svg" data-src="@banner.NameFileImage" alt="@banner.Name" title="@banner.Name" class="margin none ui image">
+                        <div style="position: absolute; margin-top: -63px; color: #fff; padding-bottom: 4px; padding-left: 5px; font-size: 30px; font-family: Euroestile, square; border-bottom: 3px solid #fac600;">Saiba Mais</div>
+                    </a>
+                </div>
+            }
+        
+        </div>
+    </div>
+}

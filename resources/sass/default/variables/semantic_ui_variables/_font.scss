@@ -1,0 +1,10 @@
+//Font
+$body-font-size: 14px;
+$import-google-fonts: false;
+$font-url: 'https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&subset=latin,latin-ext';
+$font-name: 'Euroestile';
+$font-family: $font-name, 'Euroestile', square, Helvetica, sans-serif;
+@font-face {
+    font-family: 'Euroestile';
+    src: url("/assets/fonts/eurosti.ttf")
+  }

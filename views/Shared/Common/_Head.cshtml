@@ -1,0 +1,71 @@
+﻿@{
+  string _classSearch = Session["idEventList"] == null ? "search" : "filterListEventsProducts";
+  string _classMiniCart = Session["idEventList"] == null && Session["EventList"] == null ? "mini-cart" : "mini-cart-list-event";
+}
+<div class="ui container fluid _header">
+  <div class="ui container">
+    <div class="ui middle aligned four column centered grid">
+      <div class="row">
+
+      <div class="ui five wide tablet four wide computer only column">
+          <a href="/Home" title="Página Inicial">
+            <img class="ui middle aligned image logo" src="/assets/image/logo/logo.png" alt="@LojaCorp.Control.Company._Company.FantasyName" title="@LojaCorp.Control.Company._Company.FantasyName">
+          </a>
+      </div>
+
+      <div class="ui right aligned one wide tablet two wide computer only column" style="padding:0px">
+        <img class="sac"  src="/assets/image/logo/icon-sac.png" alt="sac" title="sac">
+        <span class="sac-letters">Precisa de ajuda? <br> +11 5555-5555 </span>
+      </div>
+
+        <div class="ui center aligned five wide computer column only searchcolumn">
+          <div class="ui category @_classSearch">
+            <div class="ui icon input fluid">
+              <input class="prompt" type="text" placeholder="Buscar...">
+              <i class="search icon" style="clip-path: polygon(10% 0%, 0% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%, 0% 100%);"></i>
+              <div class="borda">
+              </div>
+            </div>
+            <div class="results"></div>
+          </div>
+        </div>
+
+        
+        
+        <div class="ui right aligned two wide tablet three wide computer only column" style="padding-top: 20px; padding-bottom: 10px;">
+
+
+
+            <div id="cartButton" class="ui labeled button cartbutton no margin bottom mini-cart"  tabindex="0" data-segment="b2c" style="width:45px; height:45px; margin-right:10px">
+            <div>
+              <img class="iconesh" src="/assets/image/logo/icon-kart.png" alt="Meu Pedido" title="Meu Pedido">
+            <a class="ui circular label" id="total_itens_card">
+             @{
+                if (Session["EventList"] == null)
+                {
+                  @Html.Action("TotalItensCart", "Checkout")
+                }
+                else
+                {
+                  @Html.Action("TotalItensList", "EventList")
+                }
+              }
+            </a>
+            </div>
+          </div>
+
+          <a href="/Customer/WishList" style="margin-right:10px" target="_blank">
+            <img class="iconesh" src="/assets/image/logo/icon-fav.png" alt="Favoritos" title="Favoritos">
+          </a>
+
+          <a  href="/customer" target="_blank">
+            <img class="iconesh" src="/assets/image/logo/icon-login.png" alt="Minha Conta" title="Minha Conta">
+          </a>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+

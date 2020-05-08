@@ -1,0 +1,74 @@
+﻿<div class="ui container fluid topbar" id="top_bar">
+    <div class="ui container">
+        <div class="ui grid middle aligned inverted">
+            <div class="two column row">
+                <div class="ui left floated column margin none three wide computer tablet-hide mobile-hide" style="display: contents;">
+                    <i class="mail icon regular" style="color:#151515"></i>
+                    <span style="color:#151515">vendas@tebaosuspensoes.com.br</span>
+                </div>
+                @Html.Action("SocialBar", "SocialNetwork")
+
+
+                <div class="ui right floated right aligned column margin none eight wide computer sixteen wide tablet sixteen wide tablet">                    
+                    <div class="ui horizontal list relaxed divided">
+                        @if ((Session["UserAuthenticated"] == null || (Convert.ToBoolean(Session["Guest"]) == true)) && Session["Seller"] == null)
+                        {
+                                <a href="/customer" class="item" title="Minha Conta" style="color:#151515; font-size: 14px; text-transform: uppercase;">Minha Conta</a>
+                                <a href="/order" class="item" title="Meus Pedidos" style="color:#151515; font-size: 14px; text-transform: uppercase;">Pedidos</a>
+                                <a href="/customer/logout" class="item" title="Sair" style="color:#151515; font-size: 14px; text-transform: uppercase;">Logout</a>
+                        }
+                        @if ((Session["UserAuthenticated"] != null) && (Convert.ToBoolean(Session["Guest"]) == false))
+                        {
+                            var userAuthenticated = (DomainCustomer.Entities.Customer)Session["UserAuthenticated"];
+
+                            Char delimiter = ' ';
+                            String[] nickName = userAuthenticated.Name.Split(delimiter);
+
+                            <div class="ui inline item dropdown pointing top right">
+                                <div class="text regular black">
+                                    <a href="/customer" title="Área do Cliente"style="padding-right: 10px;">
+                                        <span class="text">Olá <span title="@userAuthenticated.Name.ToString()" id="userNameCommon">@nickName[0],</span></span>
+                                    </a>
+                                    <a href="/customer/logout" title="Área do Cliente" style="padding-right: 10px;">
+                                        <span href="/customer/logout" class="text">Sair</span>
+                                    </a>
+                                </div>
+                                <div class="menu">
+                                    <a href="/customer" class="item" title="Minha Conta">Minha Conta</a>
+                                    <a href="/order" class="item" title="Meus Pedidos">Pedidos</a>
+                                    <a href="/customer/logout" class="item" title="Sair">Logout</a>
+                                </div>
+                            </div>
+                        }
+                        else if ((Session["Seller"] != null))
+                        {
+                            var userAuthenticated = (DomainAssistedSale.Entities.Seller)Session["Seller"];
+
+                            Char delimiter = ' ';
+                            String[] nickName = userAuthenticated.Name.Split(delimiter);
+
+                            <div class="ui inline item dropdown pointing top right">
+                                <div class="text regular black">
+                                    <a href="/customer" title="Área do Cliente" style="padding-right: 10px;">
+                                        <span class="text">Olá <span title="@userAuthenticated.Name.ToString()" id="userNameCommon">@nickName[0],</span></span>
+                                    </a>
+                                    <a href="/customer/logout" title="Área do Cliente" style="padding-right: 10px;">
+                                        <span href="/customer/logout" class="text">Sair</span>
+                                    </a>
+                                </div>
+                                <div class="menu">
+                                    <a href="/assistedsale" class="item" title="Minha Conta">Meus Clientes</a>
+                                    <a href="/assistedsale/logout" class="item" title="Sair">Logout</a>
+                                </div>
+                            </div>
+                        }
+
+                        @if((Session["Seller"] == null)) {
+                            @Html.Action("B2BIsActived", "Company", null)
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

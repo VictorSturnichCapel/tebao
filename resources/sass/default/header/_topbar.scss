@@ -1,0 +1,104 @@
+.topbar {
+  height: 50px;
+  padding-top: 12px;
+  background: transparent;
+
+
+  @media screen and (max-width: $mobile-bp) {
+    height: 30px;
+  }
+
+  .ui.list > div > .item {
+    display: inline-block !important;
+    padding-left: 20px;
+  }
+  span{
+    font-family: Euroestile, square;
+  }
+  .list {
+
+    line-height: initial;
+
+    >.item {
+      padding-top:0 !important;
+      padding-bottom:0 !important;
+      line-height: initial !important;
+      text-decoration:none; 
+      font-family: Euroestile, square;
+
+      i {
+        color:#151515;
+        font-size:18px;
+      }
+
+      a {
+        color:#151515;
+        font-size:13px;
+        padding-right: 24px;
+        text-transform: uppercase;
+        text-decoration:none; 
+        font-family: Euroestile, square;
+      }
+      a.topbar:link 
+      { 
+      text-decoration:none; 
+      } 
+
+    }
+
+
+
+    span.text,
+    .menu {
+      @media screen and (max-width: $mobile-bp) {
+        display: none;
+      }
+    }
+  }
+
+  .ui.pointing.dropdown {
+
+    > .menu::after {
+      background: #1b1c1d;
+    }
+  }
+
+  .ui.grid > .row {
+    padding: 0.2em 0em;
+  }
+
+  socialbar {
+
+    .fa {
+      margin-right: 5px;
+    }
+
+    i{
+      font-size: 1.4em;
+      line-height: 0.95em;
+
+      &.facebook.icon {
+        color: #151515 !important;
+      }
+      &.instagram.icon {
+        color: #151515 !important;
+      }
+      &.twitter.icon {
+        color: #151515 !important;
+      }
+      &.youtube.icon {
+        color: #151515 !important;
+      }
+      &.google.icon {
+        color: #151515 !important;
+      }
+      &.whatsapp.icon {
+        color: #151515 !important;
+      }
+      &.bloguer.icon {
+        color: #151515 !important;
+      }
+    }
+
+  }
+}

@@ -1,0 +1,168 @@
+﻿@model List<DomainProduct.Entities.Category>
+
+<div id="menu" class="ui container fluid menuheader" style="">
+  <script>
+   if( navigator.userAgent.match(/Android/i)
+ || navigator.userAgent.match(/webOS/i)
+ || navigator.userAgent.match(/iPhone/i)
+ || navigator.userAgent.match(/iPad/i)
+ || navigator.userAgent.match(/iPod/i)
+ || navigator.userAgent.match(/BlackBerry/i)
+ || navigator.userAgent.match(/Windows Phone/i)
+ ){
+            $(window).scroll(function () {
+                //console.log($(document).scrollTop());
+                
+                if ($(document).scrollTop() >= 30) {
+                    $("#menu").attr('style', 'position: fixed; top:0px; z-index:999;');
+                } else {
+                    $("#menu").attr('style', '');
+                }
+            });
+ } 
+    </script>
+  <div class="overlapblackbg"></div>
+  <div class="ui container">
+    <div class="wsmobileheader clearfix">
+      <a id="wsnavtoggle" class="animated-arrow"><span></span></a>
+
+      <a href="/Home" title="Página Inicial">
+                <img id="logo" src="/assets/image/logo/logom.png" alt="@LojaCorp.Control.Company._Company.FantasyName" title="@LojaCorp.Control.Company._Company.FantasyName">
+      </a>
+
+      <div class="ui searchMobile mobile only"style="color:#fff; display: contents !important;">
+            <div class="ui button icon centered"style="background: transparent!important; padding: 0px; vertical-align: top; margin-top: 20px;">
+              <i class="search icon"></i>
+            </div>
+            <div class="ui blocoBusca _classSearch">
+              <div class="ui input fluid blocoBuscaContainer">
+                <input class="prompt" type="text" placeholder="Buscar...">
+                <i class="search icon search-results"></i>
+                <i class="close icon disabled" id="closeResultsMobile"></i>
+              </div>
+              <div class="results"></div>
+            </div>
+        </div> 
+
+        <div id="cartButton" class="ui labeled button cartbutton no margin bottom mini-cart" tabindex="0" data-segment="b2c">
+            <div>
+              <img src="/assets/image/logo/shopping-cart.png">
+            <a class="ui circular label" id="total_itens_card1">
+            @{
+                    if (Session["EventList"] == null)
+                    {
+                      @Html.Action("TotalItensCart", "Checkout")
+                    }
+                    else
+                    {
+                      @Html.Action("TotalItensList", "EventList")
+                    }
+                  }
+            </a>
+            </div>
+          </div>
+    </div>
+    <div class="wsmain">
+      <nav class="wsmenu">
+        <div class="ui mobile only titleMenu"><i class="content icon"></i> MENU</div>
+        <ul class="mobile-sub wsmenu-list ui menu">
+          @foreach (DomainProduct.Entities.Category category in Model)
+          {
+            if (category.Level.Length == 2)
+            {
+              <li>
+              <div class="seven wide tablet seven wide computer column mobile-hide icon-item-menu">
+              <a href="@category.UrlFriendly">
+                <img class="ui image iconm" style="margin: auto; padding-top: 15px;" src="/assets/image/icon-menu-principal@(category.UrlFriendly + ".png")" alt="@category.Name" title="@category.Name" />
+              </a>
+              </div>
+                <a href="@category.UrlFriendly" class="item" title="@category.Name">
+                  @category.Name
+                  @if (category.ChildCategories != null && category.ChildCategories.Any())
+                  {
+                    
+                  }
+                </a>
+                @if (category.ChildCategories != null && category.ChildCategories.Any())
+                {
+                  <div class="megamenu clearfix">
+                    <div class="ui grid">
+                      <div class="row">
+                        <div class="@(category.Image == null ? "sixteen wide computer column" : "fifteen wide mobile twelve wide tablet twelve wide computer column")">
+                          <div id="megamenusub" class="ui grid three column">
+                            @if (category.ChildCategories != null && category.ChildCategories.Any())
+                            {
+                              foreach (DomainProduct.Entities.Category subCategoryLevel1 in category.ChildCategories)
+                              {
+                                <div class="sixteen wide mobile eight wide tablet five wide computer column">
+                                  <div class="ui list relaxed">
+                                    <div style="border-bottom: 0.5px solid #fac600;">
+                                    <a href="@subCategoryLevel1.UrlFriendly">
+                                      <img class="ui image iconm" style="display: inline-block;" src="//static-tebao.plataformaneo.com.br/icon-menu/(@subCategoryLevel1.Name).png" alt="@subCategoryLevel1.Name" title="@subCategoryLevel1.Name" />
+                                      <span style="color: #fac600;padding-left: 14%;font-size: 14px;text-transform: uppercase;font-weight: bold;"> &raquo; Ver Mais </span>
+                                    </a>
+                                    </div>
+                                    @if (subCategoryLevel1.ChildCategories != null && subCategoryLevel1.ChildCategories.Any())
+                                    {
+                                      <div class="ui divider"></div>
+                                      foreach (var subCategoryLevel2 in subCategoryLevel1.ChildCategories)
+                                      {
+                                      }
+                                    }
+                                  </div>
+                                </div>
+                              }
+                            }
+                          </div>
+                        </div>
+                        @if (category.Image != null)
+                        {
+                          <div class="four wide tablet four wide computer column mobile-hide">
+                            @{
+                              string linkCategoriaImagem = null;
+                              if (category.Link != null)
+                              {
+                                linkCategoriaImagem = category.Link.Contains("http") || category.Link.Contains("https") ?  category.Link : "http://" + category.Link;
+                              }
+                              else
+                              {
+                                linkCategoriaImagem = @category.UrlFriendly;
+                              }
+                            }
+                            <a href="@linkCategoriaImagem" alt="@category.Image" title="@category.Name">
+                              <img class="ui image" src="@category.Image" alt="@category.Name" title="@category.Name" />
+                            </a>
+                          </div>
+                        }
+
+                      </div>
+                    </div>
+                  </div>
+                }
+              </li>
+            }
+            else
+            {
+              <li>
+                <a class="item" href="~/category/index/@category.IdCategory" title="@category.Name"><span>@category.Name</span></a>
+              </li>
+            }
+          }
+          <li>
+          <div class="seven wide tablet seven wide computer column mobile-hide icon-item-menu">
+            <a href="/fale-conosco" title="Fale Conosco">
+              <img class="ui image iconm" style="margin: auto; padding-top: 15px;" src="//static-tebao.plataformaneo.com.br/icon-menu-principal/categoria/contato.png" alt="contato" title="contato" />
+            </a>   
+            </div>
+            <a href="/fale-conosco" class="item" title="Fale Conosco">
+              Contato
+            </a>    
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+<a href="https://wa.me/5511986947360" class="btn_whats" style="display: block;">
+  ....
+</a>
